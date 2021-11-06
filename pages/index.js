@@ -4,6 +4,7 @@ import Image from 'next/image'
 import tw from "tailwind-styled-components"
 import mapboxgl from '!mapbox-gl'
 import Map from './components/Map'
+import Link from 'next/link'
 
 export default function Home() {
   
@@ -24,13 +25,26 @@ export default function Home() {
 
         {/* Action Buttons */}
         <ActionButtons>
+          <Link href="/search" >
+            <ActionButton>
+              <ActionButtonImage src="https://i.ibb.co/cyvcpfF/uberx.png" />
+              Ride
+            </ActionButton>
+          </Link>
           <ActionButton>
-            <ActionButtonImage src="https://i.ibb.co/cyvcpfF/uberx.png" />Ride</ActionButton>
-          <ActionButton>Wheels</ActionButton>
-          <ActionButton>Reserve</ActionButton>
+            <ActionButtonImage src="https://i.ibb.co/n776JLm/bike.png" />
+            2-Wheels
+          </ActionButton>
+          <ActionButton>
+            <ActionButtonImage src="https://i.ibb.co/5RjchBg/uberschedule.png" />
+            Reserve
+          </ActionButton>
 
         </ActionButtons>
 
+        <InputButton>
+        Where to
+        </InputButton>
       </ActionItems>
 
       
@@ -71,8 +85,12 @@ const ActionButtons = tw.div`
 `
 
 const ActionButton = tw.div`
-  bg-gray-200 flex-1 m-1 h-32
+  flex bg-gray-200 flex-1 m-1 h-32 items-center flex-col justify-center rounded-lg transform hover:scale-105 transition text-xl cursor-pointer
 `
 const ActionButtonImage = tw.img`
   h-3/5
+`
+
+const InputButton = tw.div`
+  h-20 bg-gray-200 text-2xl p-4 items-center mt-8 rounded-lg
 `
