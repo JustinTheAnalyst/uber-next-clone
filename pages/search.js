@@ -1,8 +1,15 @@
-import React from 'react'
+import {useState} from 'react'
 import tw from "tailwind-styled-components"
 import Link from 'next/link'
 
 const Search = () => {
+
+    const [pickup, setPickup] = useState("");
+    const [dropoff, setDropoff] = useState("");
+
+    console.log(pickup);
+    console.log(dropoff);
+
     return (
         <Wrapper>
             
@@ -18,8 +25,16 @@ const Search = () => {
                     <Square src="https://img.icons8.com/windows/50/000000/square-full.png" />
                 </FromToIcons>
                 <InputBoxes>
-                    <Input placeholder="Enter pickup location" />
-                    <Input placeholder="Where to?" />
+                    <Input 
+                        placeholder="Enter pickup location" 
+                        value={pickup}
+                        onChange={(e) => setPickup(e.target.value)}
+                    />
+                    <Input 
+                        placeholder="Where to?" 
+                        value={dropoff}
+                        onChange={(e) => setDropoff(e.target.value)}
+                    />
                 </InputBoxes>
                 <PlusIcon src="https://img.icons8.com/ios/50/000000/plus-math.png" />
             </InputContainer>
@@ -29,9 +44,17 @@ const Search = () => {
                 Saved Places
             </SavedPlaces>
 
-            <ConfirmButton>
-                Confirm
-            </ConfirmButton>
+            <Link href={{
+                pathname:"/confirm",
+                query: {
+                    pickup: pickup,
+                    dropoff: dropoff
+                }
+            }}>
+                <ConfirmButton>
+                    Confirm Locations
+                </ConfirmButton>
+            </Link>
         </Wrapper>
     )
 }
@@ -86,5 +109,5 @@ const StarIcon = tw.img`
 bg-gray-400 w-10 h-10 p-2 rounded-full mr-2
 `
 const ConfirmButton = tw.div`
-flex bg-black text-white text-2xl p-2 mt-2 mx-4 justify-center rounded-lg transform hover:scale-105 transition cursor-pointer
+bg-black text-white text-center mt-2 mx-4 px-4 py-3 text-2xl cursor-pointer transform hover:scale-95 transition 
 `
